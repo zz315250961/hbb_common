@@ -2370,7 +2370,9 @@ impl UserDefaultConfig {
                 self.get_string(key, "scrollauto", vec!["scrolledge", "scrollbar"])
             }
             keys::OPTION_IMAGE_QUALITY => {
-                self.get_string(key, "balanced", vec!["best", "low", "custom"])
+                // 远控定制：默认画质改为「优化响应」（流畅优先），
+                // 用户可在设置→显示设置→默认画质中选「好画质/均衡」
+                self.get_string(key, "low", vec!["best", "balanced", "low", "custom"])
             }
             keys::OPTION_CODEC_PREFERENCE => {
                 self.get_string(key, "auto", vec!["vp8", "vp9", "av1", "h264", "h265"])
