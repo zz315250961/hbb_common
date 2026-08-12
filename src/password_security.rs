@@ -22,7 +22,9 @@ pub enum ApproveMode {
 
 fn get_auto_password() -> String {
     let len = temporary_password_length();
-    if Config::get_bool_option(crate::config::keys::OPTION_ALLOW_NUMERNIC_ONE_TIME_PASSWORD) {
+    let opt = Config::get_option(crate::config::keys::OPTION_ALLOW_NUMERNIC_ONE_TIME_PASSWORD);
+    if opt != "N" {
+        // 远控定制：默认纯数字密码（4 位，简单易记）
         Config::get_auto_numeric_password(len)
     } else {
         Config::get_auto_password(len)
@@ -52,12 +54,14 @@ fn verification_method() -> VerificationMethod {
 
 pub fn temporary_password_length() -> usize {
     let length = Config::get_option("temporary-password-length");
-    if length == "8" {
+    if length == "4" {
+        4
+    } else if length == "8" {
         8
     } else if length == "10" {
         10
     } else {
-        6 // default
+        4 // 远控定制：默认 4 位
     }
 }
 
