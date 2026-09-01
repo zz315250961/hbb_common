@@ -703,6 +703,9 @@ message TestDelay {
   bool from_client = 2;
   uint32 last_delay = 3;
   uint32 target_bitrate = 4;
+  uint32 target_fps = 5;
+  string qos_tier = 6;
+  string capture_scale = 7;
 }
 
 message PublicKey {
