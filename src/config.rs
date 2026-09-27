@@ -118,6 +118,7 @@ const CHARS: &[char] = &[
 ];
 
 pub const RENDEZVOUS_SERVERS: &[&str] = &["8.133.168.136"];
+pub const BUILTIN_API_SERVER: &str = "https://zperme.top/remote";
 pub const RS_PUB_KEY: &str = "POeMIX6duM6t5p1AiisDAtnNl1Kgu0k2iuseDwLFeDA=";
 
 pub const RENDEZVOUS_PORT: i32 = 21116;

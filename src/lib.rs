@@ -493,8 +493,8 @@ pub const VER_TYPE_RUSTDESK_CLIENT: &str = "rustdesk-client";
 pub const VER_TYPE_RUSTDESK_SERVER: &str = "rustdesk-server";
 
 pub fn version_check_request(typ: String) -> (VersionCheckRequest, String) {
-    // 远控定制：版本检查指向自建服务器更新源（域名未备案被拦截，用 IP）
-    const URL: &str = "http://8.133.168.136/version/latest";
+    // The site serves platform-specific packages without exposing another app's /api/ route.
+    const URL: &str = "https://zperme.top/version/latest";
 
     use sysinfo::System;
     let system = System::new();
@@ -511,7 +511,7 @@ pub fn version_check_request(typ: String) -> (VersionCheckRequest, String) {
             device_id,
             typ,
         },
-        URL.to_string(),
+        format!("{URL}?platform={}", std::env::consts::OS),
     )
 }
 
